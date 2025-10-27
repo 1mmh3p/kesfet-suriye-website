@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suriye İlleri - Suriye'yi Keşfet</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+        /* Page Hero Section */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff, #e0f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Governorates Detail Section */
+.governorates-detail {
+    padding: 4rem 0;
+    background: var(--neutral-50);
+}
+
+.governorate-detail {
+    background: white;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 3rem;
+    overflow: hidden;
+    border: 1px solid var(--neutral-200);
+    transition: var(--transition);
+}
+
+.governorate-detail:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-5px);
+}
+
+.detail-header {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+    color: white;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.detail-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+}
+
+.capital-badge,
+.economic-badge {
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 0.875rem;
+    backdrop-filter: blur(10px);
+}
+
+.capital-badge {
+    background: linear-gradient(135deg, var(--secondary-500), var(--secondary-600));
+}
+
+.economic-badge {
+    background: linear-gradient(135deg, var(--warning), #f97316);
+}
+
+.detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 3rem;
+}
+
+.detail-image {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    height: 400px;
+}
+
+.detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
+}
+
+.governorate-detail:hover .detail-image img {
+    transform: scale(1.05);
+}
+
+.detail-info h3 {
+    font-size: 1.75rem;
+    color: var(--primary-600);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.detail-info > p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--neutral-700);
+    margin-bottom: 2rem;
+}
+
+/* Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.info-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--neutral-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--neutral-200);
+    transition: var(--transition);
+}
+
+.info-item:hover {
+    background: var(--primary-50);
+    border-color: var(--primary-200);
+    transform: translateY(-2px);
+}
+
+.info-item h4 {
+    font-size: 0.875rem;
+    color: var(--neutral-600);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    margin: 0;
+}
+
+/* Highlights and Cuisine Sections */
+.highlights,
+.cuisine {
+    margin-bottom: 2rem;
+}
+
+.highlights h4,
+.cuisine h4 {
+    font-size: 1.25rem;
+    color: var(--neutral-900);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.highlights h4::before {
+    content: '🏛️';
+}
+
+.cuisine h4::before {
+    content: '🍽️';
+}
+
+.highlights ul,
+.cuisine ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.highlights li,
+.cuisine li {
+    padding: 0.75rem 1rem;
+    background: var(--neutral-100);
+    border-radius: var(--radius-md);
+    color: var(--neutral-700);
+    font-weight: 500;
+    transition: var(--transition);
+    border-left: 4px solid var(--primary-500);
+}
+
+.highlights li:hover,
+.cuisine li:hover {
+    background: var(--primary-100);
+    color: var(--primary-700);
+    transform: translateX(5px);
+}
+
+/* Navigation Tabs for Governorates */
+.governorates-nav {
+    background: white;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--neutral-200);
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-tab {
+    padding: 0.75rem 1.5rem;
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.nav-tab:hover {
+    background: var(--primary-100);
+    color: var(--primary-600);
+}
+
+.nav-tab.active {
+    background: var(--primary-600);
+    color: white;
+}
+
+/* Quick Facts */
+.quick-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.fact-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 1px solid var(--neutral-200);
+    transition: var(--transition);
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.fact-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: var(--primary-100);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-600);
+}
+
+.fact-card h4 {
+    font-size: 1.125rem;
+    color: var(--neutral-900);
+    margin-bottom: 0.5rem;
+}
+
+.fact-card p {
+    color: var(--neutral-600);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .detail-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .detail-image {
+        height: 300px;
+    }
+    
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 100px 0 60px;
+        margin-top: 70px;
+    }
+    
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .detail-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .detail-header h2 {
+        font-size: 2rem;
+    }
+    
+    .detail-content {
+        padding: 1.5rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .highlights ul,
+    .cuisine ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .page-hero p {
+        font-size: 1.125rem;
+    }
+    
+    .detail-header h2 {
+        font-size: 1.75rem;
+    }
+    
+    .detail-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .quick-facts {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.governorate-detail {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.governorate-detail:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.governorate-detail:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-600);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--primary-700);
+    transform: translateY(-3px);
+}
+</style>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-compass"></i>
+                    Suriye'yi Keşfet
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="governorates.html" class="active">İller</a></li>
+                <li class="nav-item"><a href="food.html">Mutfak</a></li>
+                <li class="nav-item"><a href="history.html">Tarih</a></li>
+                <li class="nav-item"><a href="culture.html">Kültür</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Suriye'nin İlleri</h1>
+            <p>14 benzersiz il, her biri kendine özgü kültürü ve tarihiyle</p>
+        </div>
+    </section>
+
+
+    
+   <section class="governorates-detail">
+    <div class="container">
+
+        <!-- Şam -->
+        <div id="damascus" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Şam</h2>
+                <span class="capital-badge">Başkent</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/damascus-detail.jpg" alt="Şam">
+                </div>
+                <div class="detail-info">
+                    <h3>Yasemin ve Tarihin Başkenti</h3>
+                    <p>Şam, dünyanın en eski sürekli yerleşim yeri olarak bilinir. Binlerce yıllık tarihi, geleneksel çarşıları ve mimarisiyle büyüleyici bir şehirdir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>2,000,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>105 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Güney Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Emevi Camii</li>
+                            <li>Şam Eski Şehir</li>
+                            <li>Salihiye Mahallesi</li>
+                            <li>Şam Kalesi</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Künefe</li>
+                            <li>Fatteh</li>
+                            <li>Yabrak</li>
+                            <li>Şam Kebabı</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halep -->
+        <div id="aleppo" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Halep</h2>
+                <span class="economic-badge">Ekonomik Merkez</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/aleppo-detail.jpg" alt="Halep">
+                </div>
+                <div class="detail-info">
+                    <h3>Suriye'nin Ekonomik Kalbi</h3>
+                    <p>Halep, tarihi çarşıları, antik kalesi ve dünyaca ünlü mutfağıyla Suriye'nin en önemli ticaret ve sanayi merkezidir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>2,500,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>190 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Kuzey Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Halep Kalesi</li>
+                            <li>Halep Kapalı Çarşı</li>
+                            <li>Eski Şehir</li>
+                            <li>Ulu Cami</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Halep Kebabı</li>
+                            <li>Muhammara</li>
+                            <li>Fıstıklı Tatlılar</li>
+                            <li>Simit Halep</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Homs -->
+        <div id="homs" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Homs</h2>
+                <span class="historic-badge">Tarih ve Kültür</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/homs-detail.jpg" alt="Homs">
+                </div>
+                <div class="detail-info">
+                    <h3>Tarihi ve Kültürel Şehir</h3>
+                    <p>Homs, Roma döneminden kalan tarihi yapıları ve geleneksel pazarları ile tanınır. Şehrin tarihi dokusu ve sadeliği dikkat çeker.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>1,800,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>48 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Merkez Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Homs Kalesi</li>
+                            <li>Khalid Bin Walid Camii</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Fatteh</li>
+                            <li>Humus</li>
+                            <li>Falafel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hama -->
+        <div id="hama" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Hama</h2>
+                <span class="nature-badge">Doğa ve Tarih</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/hama-detail.jpg" alt="Hama">
+                </div>
+                <div class="detail-info">
+                    <h3>Norias ve Doğal Güzellikler</h3>
+                    <p>Hama, ünlü su çarkları ve Asi Nehri ile tanınır. Şehir, doğa ile tarihi bir uyum sunar.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>1,200,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>48 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Merkez Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Hama Noria’ları</li>
+                            <li>Hama Kalesi</li>
+                            <li>Asi Nehri</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Fattuş</li>
+                            <li>Tabule</li>
+                            <li>Mücaddere</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lattakia -->
+        <div id="latakia" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Lazkiye</h2>
+                <span class="coastal-badge">Sahil Şehri</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/latakia-detail.jpg" alt="Lazkiye">
+                </div>
+                <div class="detail-info">
+                    <h3>Suriye'nin Sahil Kenti</h3>
+                    <p>Lazkiye, Akdeniz sahilleri, doğal güzellikleri ve deniz kültürü ile tanınır. Canlı bir sahil şehridir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>800,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>60 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Batı Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Lazkiye Limanı</li>
+                            <li>Ugarit Harabeleri</li>
+                            <li>Sahil Plajları</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Balık Izgara</li>
+                            <li>Deniz Ürünleri</li>
+                            <li>Muhammara</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tartus -->
+        <div id="tartus" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Tartus</h2>
+                <span class="coastal-badge">Sahil Şehri</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/tartus-detail.jpg" alt="Tartus">
+                </div>
+                <div class="detail-info">
+                    <h3>Akdeniz Kıyısında Tarih</h3>
+                    <p>Tartus, Haçlı kaleleri ve güzel sahil şehirleriyle tanınır. Tarih ve deniz kültürü bir aradadır.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>400,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>34 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Batı Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Citadel Tartus</li>
+                            <li>Plajlar ve Liman</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Balık Tabağı</li>
+                            <li>Deniz Mahsulleri</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- İdlip -->
+        <div id="idlib" class="governorate-detail">
+            <div class="detail-header">
+                <h2>İdlip</h2>
+                <span class="historic-badge">Tarih ve Kültür</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/idlib-detail.jpg" alt="İdlip">
+                </div>
+                <div class="detail-info">
+                    <h3>Doğa ve Tarih Şehri</h3>
+                    <p>İdlip, antik yerleşimleri, doğal vadileri ve tarihi yapıları ile tanınır. Tarımsal kültürü oldukça gelişmiştir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>1,500,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>61 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Kuzeybatı Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Bseira Antik Kent</li>
+                            <li>Serin Vadiler</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Warak Enab</li>
+                            <li>Kibbeh</li>
+                            <li>Fattuş</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deraa -->
+        <div id="deraa" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Deraa</h2>
+                <span class="historic-badge">Güney Tarihi</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/deraa-detail.jpg" alt="Deraa">
+                </div>
+                <div class="detail-info">
+                    <h3>Güneyin Tarihi Şehri</h3>
+                    <p>Deraa, antik Roma kalıntıları ve verimli tarım arazileri ile tanınır. Güney Suriye'nin kültürel merkezlerinden biridir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>1,000,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>46 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Güney Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Roma Kalıntıları</li>
+                            <li>Deraa Çarşısı</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Makloubeh</li>
+                            <li>Fattuş</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suweida -->
+        <div id="suweida" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Süveyde</h2>
+                <span class="historic-badge">Tarih ve Kültür</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/suweida-detail.jpg" alt="Süveyde">
+                </div>
+                <div class="detail-info">
+                    <h3>Güneyin Kültürel Şehri</h3>
+                    <p>Süveyde, Osmanlı ve Roma kalıntılarıyla çevrili, kültürel ve doğal mirası olan bir güney şehridir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>200,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>35 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Güney Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Osmanlı Kalıntıları</li>
+                            <li>Doğal Vadiler</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Kibbeh</li>
+                            <li>Fatteh</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Raqqa -->
+        <div id="raqqa" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Rakka</h2>
+                <span class="historic-badge">Tarih</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/raqqa-detail.avif" alt="Rakka">
+                </div>
+                <div class="detail-info">
+                    <h3>Fırat Nehri'nin Şehri</h3>
+                    <p>Rakka, antik kentleri ve Fırat Nehri kıyısı ile bilinir. Suriye'nin kuzeydoğusunda stratejik bir konuma sahiptir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>220,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>55 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Kuzeydoğu Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Fırat Nehri</li>
+                            <li>Antik Kalıntılar</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Mücaddere</li>
+                            <li>Kebaplar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deir ez-Zor -->
+        <div id="deir-ez-zor" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Der Ez-Zor</h2>
+                <span class="historic-badge">Fırat Vadisi</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/deir-ez-zor-detail.jpg" alt="Der Ez-Zor">
+                </div>
+                <div class="detail-info">
+                    <h3>Fırat Nehri ve Çöller</h3>
+                    <p>Der Ez-Zor, Fırat Nehri boyunca yerleşim alanları ve çöl kültürü ile bilinir. Güneydoğu Suriye'nin önemli şehridir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>230,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>75 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Doğu Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Fırat Nehri</li>
+                            <li>Asi Çarşısı</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Kuzu Eti Yemekleri</li>
+                            <li>Makloubeh</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hasaka -->
+        <div id="hasaka" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Haseke</h2>
+                <span class="agricultural-badge">Tarımsal Bölge</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/hasaka-detail.jpg" alt="Haseke">
+                </div>
+                <div class="detail-info">
+                    <h3>Kuzeydoğunun Tarım Merkezi</h3>
+                    <p>Haseke, geniş tarım arazileri ve nehirlere yakın konumuyla bilinir. Tahıl ve pamuk üretimi yoğun bir bölgedir.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>250,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>91 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Kuzeydoğu Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Tarımsal Alanlar</li>
+                            <li>Kültürel Köyler</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Buğday Tabağı</li>
+                            <li>Köfte</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quneitra -->
+        <div id="quneitra" class="governorate-detail">
+            <div class="detail-header">
+                <h2>Kuneitra</h2>
+                <span class="historic-badge">Güney Tarihi</span>
+            </div>
+            <div class="detail-content">
+                <div class="detail-image">
+                    <img src="../images/governorates/quneitra-detail.jpg" alt="Kuneitra">
+                </div>
+                <div class="detail-info">
+                    <h3>Tarihi Güney Şehri</h3>
+                    <p>Kuneitra, stratejik ve tarihi önemi olan bir güney şehridir. Çoğu alanı askeri bölge olarak kullanılmıştır.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><h4>Nüfus</h4><p>40,000+</p></div>
+                        <div class="info-item"><h4>Alan</h4><p>131 km²</p></div>
+                        <div class="info-item"><h4>Bölge</h4><p>Güney Suriye</p></div>
+                    </div>
+                    <div class="highlights">
+                        <h4>Önemli Yerler</h4>
+                        <ul>
+                            <li>Eski Şehir Kalıntıları</li>
+                        </ul>
+                    </div>
+                    <div class="cuisine">
+                        <h4>Yöresel Lezzetler</h4>
+                        <ul>
+                            <li>Yerel Mezeler</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Suriye'yi Keşfet. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

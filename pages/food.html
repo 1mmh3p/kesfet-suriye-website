@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suriye Mutfağı - Suriye'yi Keşfet</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+        /* Food Categories Section */
+.food-categories {
+    padding: 4rem 0;
+    background: var(--neutral-50);
+    min-height: 100vh;
+}
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--neutral-700);
+    border: 2px solid var(--neutral-300);
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-btn::before {
+    font-size: 1.125rem;
+}
+
+.filter-btn[data-filter="all"]::before { content: '🍽️'; }
+.filter-btn[data-filter="main"]::before { content: '🍛'; }
+.filter-btn[data-filter="appetizer"]::before { content: '🥗'; }
+.filter-btn[data-filter="dessert"]::before { content: '🍰'; }
+.filter-btn[data-filter="drink"]::before { content: '🥤'; }
+
+.filter-btn:hover {
+    border-color: var(--primary-500);
+    color: var(--primary-600);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    color: white;
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+}
+
+.food-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.food-item-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    border: 1px solid var(--neutral-200);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.food-item-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.food-image {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
+}
+
+.food-item-card:hover .food-image img {
+    transform: scale(1.1);
+}
+
+.food-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.1));
+}
+
+.food-content {
+    padding: 2rem;
+}
+
+.food-content h3 {
+    font-size: 1.5rem;
+    color: var(--neutral-900);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.food-origin {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    background: var(--primary-100);
+    color: var(--primary-700);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.food-description {
+    color: var(--neutral-700);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.food-details {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.detail i {
+    color: var(--primary-600);
+}
+
+/* Category-specific styles */
+.food-item-card[data-category="main"] {
+    border-top: 4px solid var(--primary-500);
+}
+
+.food-item-card[data-category="appetizer"] {
+    border-top: 4px solid var(--success);
+}
+
+.food-item-card[data-category="dessert"] {
+    border-top: 4px solid var(--secondary-500);
+}
+
+.food-item-card[data-category="drink"] {
+    border-top: 4px solid var(--warning);
+}
+
+/* Food item animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.food-item-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive Design for Food Page */
+@media (max-width: 768px) {
+    .food-items-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+    
+    .filter-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .food-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .food-details {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .detail {
+        justify-content: center;
+    }
+}
+</style>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-compass"></i>
+                    Suriye'yi Keşfet
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="governorates.html">İller</a></li>
+                <li class="nav-item"><a href="food.html" class="active">Mutfak</a></li>
+                <li class="nav-item"><a href="history.html">Tarih</a></li>
+                <li class="nav-item"><a href="culture.html">Kültür</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Suriye Mutfağı</h1>
+            <p>Binlerce yıllık medeniyetlerin harmanlandığı eşsiz lezzetler</p>
+        </div>
+    </section>
+
+    <section class="food-categories">
+        <div class="container">
+            <div class="category-filters">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="main">Ana Yemekler</button>
+                <button class="filter-btn" data-filter="appetizer">Mezeler</button>
+                <button class="filter-btn" data-filter="dessert">Tatlılar</button>
+                <button class="filter-btn" data-filter="drink">İçecekler</button>
+            </div>
+
+            <div class="food-items-grid">
+                <!-- Kibbeh -->
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/kibbeh.jpg" alt="Kibbeh">
+                    </div>
+                    <div class="food-content">
+                        <h3>Kibbeh</h3>
+                        <p class="food-origin">Halep</p>
+                        <p class="food-description">İnce bulgur kabuğu içinde baharatlı kıyma ile hazırlanan geleneksel bir yemek.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 60 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fatteh -->
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/fatteh.jpg" alt="Fatteh">
+                    </div>
+                    <div class="food-content">
+                        <h3>Fatteh</h3>
+                        <p class="food-origin">Şam</p>
+                        <p class="food-description">Nohut, yoğurt ve kızarmış ekmekle hazırlanan geleneksel bir Suriye yemeği.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 45 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Muhammara -->
+                <div class="food-item-card" data-category="appetizer">
+                    <div class="food-image">
+                        <img src="../images/food/muhammara.jpg" alt="Muhammara">
+                    </div>
+                    <div class="food-content">
+                        <h3>Muhammara</h3>
+                        <p class="food-origin">Halep</p>
+                        <p class="food-description">Kırmızı biber, ceviz ve zeytinyağı ile yapılan nefis bir meze.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 30 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Künefe -->
+                <div class="food-item-card" data-category="dessert">
+                    <div class="food-image">
+                        <img src="../images/food/kunafa.jpg" alt="Künefe">
+                    </div>
+                    <div class="food-content">
+                        <h3>Künefe</h3>
+                        <p class="food-origin">Humus</p>
+                        <p class="food-description">İnce tel kadayıf, peynir ve şerbetle hazırlanan meşhur bir tatlı.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 40 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Damaskus Specialties -->
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/shakriyeh.jpg" alt="Shakriyeh">
+                    </div>
+                    <div class="food-content">
+                        <h3>Şakriyeh</h3>
+                        <p class="food-origin">Şam</p>
+                        <p class="food-description">Yoğurt soslu kuzu etiyle yapılan geleneksel Şam yemeği.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 70 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/mahshi.jpg" alt="Mahshi">
+                    </div>
+                    <div class="food-content">
+                        <h3>Mahşi</h3>
+                        <p class="food-origin">Şam</p>
+                        <p class="food-description">Kabak, patlıcan veya biberin içine pirinç ve et doldurularak pişirilir.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 90 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Zor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aleppo Specialties -->
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/lahmacun.jpg" alt="Lahmacun">
+                    </div>
+                    <div class="food-content">
+                        <h3>Etli Ekmek (Lahmacun)</h3>
+                        <p class="food-origin">Halep</p>
+                        <p class="food-description">İnce hamur üzerine kıyma, baharat ve sebzeler eklenerek pişirilen nefis yemek.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 35 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mezze -->
+                <div class="food-item-card" data-category="appetizer">
+                    <div class="food-image">
+                        <img src="../images/food/hummus.jpg" alt="Hummus">
+                    </div>
+                    <div class="food-content">
+                        <h3>Humus</h3>
+                        <p class="food-origin">Humus</p>
+                        <p class="food-description">Nohut, tahin, limon ve sarımsak karışımıyla hazırlanan meze.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 20 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="appetizer">
+                    <div class="food-image">
+                        <img src="../images/food/tabbouleh.jpg" alt="Tabbouleh">
+                    </div>
+                    <div class="food-content">
+                        <h3>Tabbule</h3>
+                        <p class="food-origin">Hama</p>
+                        <p class="food-description">İnce bulgur, maydanoz, nane ve domatesle yapılan ferahlatıcı salata.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 25 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Courses -->
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/shawarma.jpg" alt="Shawarma">
+                    </div>
+                    <div class="food-content">
+                        <h3>Şavurma</h3>
+                        <p class="food-origin">Şam</p>
+                        <p class="food-description">Marine edilmiş tavuk veya et dilimlerinin döner ateşinde pişirilmesiyle yapılır.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 50 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/makloubeh.jpg" alt="Makloubeh">
+                    </div>
+                    <div class="food-content">
+                        <h3>Maklube</h3>
+                        <p class="food-origin">Deraa</p>
+                        <p class="food-description">Et, pilav ve sebzelerin ters çevrilerek servis edildiği özel bir güney yemeği.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 80 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="food-item-card" data-category="dessert">
+                    <div class="food-image">
+                        <img src="../images/food/baklava.jpg" alt="Baklava">
+                    </div>
+                    <div class="food-content">
+                        <h3>Baklava</h3>
+                        <p class="food-origin">Halep</p>
+                        <p class="food-description">Ceviz veya fıstıkla doldurulmuş, şerbetli, çıtır tatlı.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 60 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="dessert">
+                    <div class="food-image">
+                        <img src="../images/food/mafruka.jpg" alt="Ma’arouk">
+                    </div>
+                    <div class="food-content">
+                        <h3>Ma’arouk</h3>
+                        <p class="food-origin">Halep</p>
+                        <p class="food-description">Tatlı hamurdan yapılan, hurma veya fıstık içeren bir Suriye tatlısı.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 35 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="food-item-card" data-category="drink">
+                    <div class="food-image">
+                        <img src="../images/food/jallab.jpg" alt="Jallab">
+                    </div>
+                    <div class="food-content">
+                        <h3>Cillab</h3>
+                        <p class="food-origin">Şam</p>
+                        <p class="food-description">Hurmalı, üzüm şurubu ve gül suyu ile yapılan ferahlatıcı içecek.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 10 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ek Yemekler -->
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/falafel.jpg" alt="Falafel">
+                    </div>
+                    <div class="food-content">
+                        <h3>Falafel</h3>
+                        <p class="food-origin">Humus</p>
+                        <p class="food-description">Kızartılmış nohut köftesi, genellikle tahin sosu ile servis edilir.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 40 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/manakish.jpg" alt="Manakish">
+                    </div>
+                    <div class="food-content">
+                        <h3>Manakiş</h3>
+                        <p class="food-origin">Şam</p>
+                        <p class="food-description">Zeytinyağı, kekik ve peynirle hazırlanan meşhur kahvaltılık hamur işi.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 25 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/warak-enab.jpg" alt="Yaprak Sarma">
+                    </div>
+                    <div class="food-content">
+                        <h3>Yaprak Sarma (Warak Enab)</h3>
+                        <p class="food-origin">İdlib</p>
+                        <p class="food-description">Üzüm yapraklarına pirinç, baharat ve sebze karışımı doldurularak pişirilir.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 90 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/kabsa.jpg" alt="Kabsa">
+                    </div>
+                    <div class="food-content">
+                        <h3>Kabsa</h3>
+                        <p class="food-origin">Haseke</p>
+                        <p class="food-description">Et, pilav ve baharatlarla hazırlanan geleneksel Arap yemeği, kuzeydoğu Suriye'de yaygın.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 70 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Orta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="food-item-card" data-category="main">
+                    <div class="food-image">
+                        <img src="../images/food/mujaddara.avif" alt="Mujaddara">
+                    </div>
+                    <div class="food-content">
+                        <h3>Mücaddere</h3>
+                        <p class="food-origin">Hama</p>
+                        <p class="food-description">Mercimek ve pirinçle yapılan basit ama besleyici bir yemek, üstüne soğan eklenir.</p>
+                        <div class="food-details">
+                            <span class="detail"><i class="fas fa-clock"></i> 50 dk</span>
+                            <span class="detail"><i class="fas fa-fire"></i> Kolay</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Suriye'yi Keşfet. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/food.js"></script>
+</body>
+</html>

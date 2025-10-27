@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suriye Tarihi - Medeniyetlerin Beşiği | Suriye'yi Keşfet</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --primary-500: #0ea5e9;
+            --primary-600: #0284c7;
+            --primary-700: #0369a1;
+            --secondary-500: #a855f7;
+            --secondary-600: #9333ea;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-700);
+            background-color: var(--neutral-50);
+           
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+             align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+      
+
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500), var(--primary-700));
+            color: white;
+            padding: 140px 0 80px;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #e0f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: rgba(108, 104, 104, 0.332);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
+        }
+
+        .hero-stat i {
+            font-size: 1.5rem;
+        }
+
+  
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .scroll-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Introduction Section */
+        .history-intro {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .intro-content h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-content > p {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--neutral-700);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: var(--neutral-50);
+            border-radius: var(--radius-xl);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary-600);
+            margin-bottom: 1rem;
+        }
+
+        .feature h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--neutral-900);
+        }
+
+        /* Enhanced Timeline Styles */
+        .history-timeline {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .timeline-era {
+            margin-bottom: 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .era-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .era-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-era h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600), var(--primary-600));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .timeline-era h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: 2px;
+        }
+
+        .era-description {
+            font-size: 1.2rem;
+            color: var(--neutral-600);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .era-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+        }
+
+        .historical-event {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+            border-radius: var(--radius-2xl);
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.1),
+                0 5px 10px -5px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .historical-event::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .historical-event:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                0 10px 20px -10px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .historical-event:hover::before {
+            transform: scaleX(1);
+        }
+
+        .event-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .event-date {
+            font-weight: 700;
+            color: var(--primary-600);
+            font-size: 1.3rem;
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, var(--primary-50), var(--secondary-50));
+            border-radius: var(--radius-full);
+            border: 2px solid rgba(14, 165, 233, 0.2);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .event-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .event-content h3 {
+            font-size: 1.6rem;
+            color: var(--neutral-900);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .event-content p {
+            color: var(--neutral-700);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .event-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            padding: 0.5rem 1rem;
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-tag:hover {
+            background: var(--primary-100);
+            color: var(--primary-700);
+            transform: translateY(-2px);
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-50), var(--secondary-50));
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary-500);
+        }
+
+        .event-location i {
+            color: var(--primary-600);
+            font-size: 1.1rem;
+        }
+
+        .event-location span {
+            font-weight: 600;
+            color: var(--neutral-800);
+        }
+
+        /* Era-specific styling */
+        .timeline-era:nth-child(1) .era-icon { background: linear-gradient(135deg, #8B4513, #CD853F); }
+        .timeline-era:nth-child(2) .era-icon { background: linear-gradient(135deg, #B22222, #DC143C); }
+        .timeline-era:nth-child(3) .era-icon { background: linear-gradient(135deg, #228B22, #32CD32); }
+        .timeline-era:nth-child(4) .era-icon { background: linear-gradient(135deg, #4B0082, #9370DB); }
+        .timeline-era:nth-child(5) .era-icon { background: linear-gradient(135deg, #FF8C00, #FFA500); }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(14, 165, 233, 0.6); }
+        }
+
+        .historical-event {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .era-icon {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        /* Progress Indicator */
+        .timeline-progress {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .progress-dot.active {
+            background: var(--primary-500);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+        }
+
+        .progress-dot::after {
+            content: attr(data-era);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--neutral-800);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .progress-dot:hover::after {
+            opacity: 1;
+        }
+
+        /* Statistics Section */
+        .history-stats {
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            color: white;
+            padding: 4rem ;
+            margin: 4rem 0;
+            border-radius: var(--radius-2xl);
+            position: relative;
+            overflow: hidden;
+                        width: 100%;
+                                    height: 100%;
+
+
+        }
+
+        .history-stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6057fc, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--neutral-900);
+            color: var(--neutral-300);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .era-content {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 2rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .page-hero {
+                padding: 120px 0 60px;
+                margin-top: 70px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .era-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline-era h2 {
+                font-size: 2.2rem;
+            }
+            
+            .historical-event {
+                padding: 2rem;
+            }
+            
+            .event-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .timeline-progress {
+                display: none;
+            }
+
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .historical-event {
+                padding: 1.5rem;
+            }
+            
+            .event-features {
+                flex-direction: column;
+            }
+            
+            .era-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-compass"></i>
+                    Suriye'yi Keşfet
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="governorates.html">İller</a></li>
+                <li class="nav-item"><a href="food.html">Mutfak</a></li>
+                <li class="nav-item"><a href="history.html" class="active">Tarih</a></li>
+                <li class="nav-item"><a href="culture.html">Kültür</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-aos="fade-up">Suriye Tarihi</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Medeniyetlerin Beşiği, Binlerce Yıllık Kadim Miras</p>
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    <div class="hero-stat">
+                        <i class="fas fa-history"></i>
+                        <span>5000+ Yıllık Tarih</span>
+                    </div>
+                    <div class="hero-stat">
+                        <i class="fas fa-archway"></i>
+                        <span>12 Medeniyet</span>
+                    </div>
+                    <div class="hero-stat">
+                        <i class="fas fa-landmark"></i>
+                        <span>6 UNESCO Alanı</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span>Tarihe Yolculuk</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="history-intro">
+        <div class="container">
+            <div class="intro-content" data-aos="fade-up">
+                <h2>Dünya Tarihine Yön Veren Topraklar</h2>
+                <p>Suriye, insanlık tarihinin en eski ve en önemli medeniyetlerine ev sahipliği yapmış, dünya kültür mirasının paha biçilmez bir hazinesidir. İlk şehirlerin kurulduğu, yazının icat edildiği, büyük imparatorlukların doğduğu bu kadim topraklar, binlerce yıllık tarihiyle insanlığın ortak hafızasını taşımaktadır.</p>
+                
+                <div class="intro-features">
+                    <div class="feature" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-scroll"></i>
+                        <h4>İlk Yazılı Tabletler</h4>
+                        <p>Ebla'da bulunan dünyanın en eski kütüphanesi</p>
+                    </div>
+                    <div class="feature" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-chess-rook"></i>
+                        <h4>Antik Krallıklar</h4>
+                        <p>Mari, Ugarit, Ebla gibi güçlü devletler</p>
+                    </div>
+                    <div class="feature" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-route"></i>
+                        <h4>Ticaret Yolları</h4>
+                        <p>İpek Yolu'nun kalbi, kıtaların kavşağı</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Enhanced Timeline Section -->
+    <section class="history-timeline">
+        <div class="container">
+            
+            <!-- Antik Dönem -->
+            <div class="timeline-era" id="antik-donem">
+                <div class="era-header" data-aos="fade-up">
+                    <div class="era-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h2>Antik Dönem</h2>
+                    <p class="era-description">MÖ 3000 - MS 300 | İlk şehir devletlerinden Roma'ya uzanan kadim medeniyetler</p>
+                </div>
+                <div class="era-content">
+                    <div class="historical-event" data-aos="fade-up" data-aos-delay="100">
+                        <div class="event-header">
+                            <div class="event-date">MÖ 3000</div>
+                            <div class="event-icon">
+                                <i class="fas fa-tablets"></i>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Ebla Krallığı</h3>
+                            <p>Suriye'de bilinen en eski krallıklardan biri olan Ebla, dünyanın en eski kütüphanelerinden birine sahipti. 20,000'den fazla kil tablette, ticari anlaşmalar, yasalar ve edebi metinler bulunmuştur. Bu tabletler, o dönemin sosyal, ekonomik ve siyasi yapısı hakkında paha biçilmez bilgiler sunmaktadır.</p>
+                            <div class="event-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-book"></i>
+                                    İlk Kütüphane
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-balance-scale"></i>
+                                    Yazılı Kanunlar
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-trade"></i>
+                                    Ticaret Merkezi
+                                </span>
+                            </div>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Tell Mardikh - İdlib</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="historical-event" data-aos="fade-up" data-aos-delay="200">
+                        <div class="event-header">
+                            <div class="event-date">MÖ 1800</div>
+                            <div class="event-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Mari Krallığı</h3>
+                            <p>Fırat Nehri kıyısında kurulan Mari, Mezopotamya ve Akdeniz arasındaki ticaret yollarının kesişme noktasında stratejik bir konuma sahipti. Sarayı, 300'den fazla odası ve zengin arşivleriyle dönemin en görkemli yapılarındandı. Mari tabletleri, bölgenin erken dönem diplomasi ve yönetim sistemini aydınlatmaktadır.</p>
+                            <div class="event-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-gem"></i>
+                                    Saray Kültürü
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-handshake"></i>
+                                    Diplomasi
+                                </span>
+                            </div>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Tell Hariri - Fırat Kıyısı</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="historical-event" data-aos="fade-up" data-aos-delay="300">
+                        <div class="event-header">
+                            <div class="event-date">MÖ 1200</div>
+                            <div class="event-icon">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Ugarit Krallığı</h3>
+                            <p>Akdeniz kıyısındaki Ugarit, dünyanın ilk alfabesinin geliştirildiği yerdir. 30 harflik bu alfabe, modern yazı sistemlerinin temelini oluşturmuştur. Liman şehri olarak gelişen Ugarit, Doğu ve Batı arasında kültürel ve ticari köprü görevi görmüş, zengin bir edebi ve dini geleneğe sahip olmuştur.</p>
+                            <div class="event-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-font"></i>
+                                    İlk Alfabe
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-anchor"></i>
+                                    Deniz Ticareti
+                                </span>
+                            </div>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Ras Shamra - Lazkiye</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="history-stats" data-aos="fade-up">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Yıllık Tarih</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Büyük Medeniyet</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">UNESCO Alanı</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Antik Şehir</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roma ve Bizans Dönemi -->
+            <div class="timeline-era" id="roma-donemi">
+                <div class="era-header" data-aos="fade-up">
+                    <div class="era-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h2>Roma ve Bizans Dönemi</h2>
+                    <p class="era-description">MS 64 - 636 | İmparatorlukların gözdesi, Hristiyanlığın yayıldığı altın çağ</p>
+                </div>
+                <div class="era-content">
+                    <div class="historical-event" data-aos="fade-up" data-aos-delay="100">
+                        <div class="event-header">
+                            <div class="event-date">MS 64</div>
+                            <div class="event-icon">
+                                <i class="fas fa-archway"></i>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <h3>Roma İmparatorluğu Dönemi</h3>
+                            <p>Suriye, Roma İmparatorluğu'nun en önemli eyaletlerinden biri haline geldi. Roma mimarisi, yönetim sistemi ve kültürü bölgeye hakim oldu. Antakya, Roma'nın doğudaki başkenti olarak büyük bir metropol haline geldi ve Hristiyanlığın yayılmasında kritik bir rol oynadı.</p>
+                            <div class="event-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-city"></i>
+                                    Antakya Metropolü
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-road"></i>
+                                    Roma Yolları
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- İslam Dönemi -->
+            <div class="timeline-era" id="islam-donemi">
+                <div class="era-header" data-aos="fade-up">
+                    <div class="era-icon">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <h2>İslam Dönemi</h2>
+                    <p class="era-description">MS 636 - 1516 | İslam medeniyetinin altın çağı ve çok kültürlü miras</p>
+                </div>
+                <div class="era-content">
+                    <div class="historical-event" data-aos="fade-up" data-aos-delay="100">
+                        <div class="event-header">
+                            <div class="event-date">MS 636</div>
+                            <div class="event-icon">
+                                <i class="fas fa-sword"></i>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <h3>İslam Fetihleri</h3>
+                            <p>Halid bin Velid komutasındaki İslam orduları Suriye'yi fethetti. Yermük Savaşı ile Bizans ordusu mağlup edildi ve bölge İslam hakimiyetine girdi. Bu fetih, bölgenin kaderini değiştirdi ve yeni bir medeniyet dönemini başlattı.</p>
+                            <div class="event-features">
+                                <span class="feature-tag">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Yermük Savaşı
+                                </span>
+                                <span class="feature-tag">
+                                    <i class="fas fa-flag"></i>
+                                    İslam Hakimiyeti
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Suriye'yi Keşfet. Tüm hakları saklıdır. | Medeniyetlerin beşiği Suriye'nin kadim tarihini keşfedin</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navigation functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navbar = document.querySelector('.navbar');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced Timeline Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Progress indicator functionality
+            const progressDots = document.querySelectorAll('.progress-dot');
+            const timelineEras = document.querySelectorAll('.timeline-era');
+            
+            // Intersection Observer for progress dots
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const eraId = entry.target.id;
+                        progressDots.forEach(dot => dot.classList.remove('active'));
+                        const correspondingDot = document.querySelector(`.progress-dot[data-era="${getEraName(eraId)}"]`);
+                        if (correspondingDot) {
+                            correspondingDot.classList.add('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            timelineEras.forEach(era => observer.observe(era));
+            
+            function getEraName(eraId) {
+                const eraMap = {
+                    'antik-donem': 'Antik',
+                    'roma-donemi': 'Roma',
+                    'islam-donemi': 'İslam',
+                    'osmanli-donemi': 'Osmanlı',
+                    'modern-donem': 'Modern'
+                };
+                return eraMap[eraId] || '';
+            }
+            
+            // Click to scroll functionality for progress dots
+            progressDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const eraName = this.getAttribute('data-era');
+                    const targetEra = document.getElementById(getEraId(eraName));
+                    if (targetEra) {
+                        targetEra.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            function getEraId(eraName) {
+                const eraMap = {
+                    'Antik': 'antik-donem',
+                    'Roma': 'roma-donemi',
+                    'İslam': 'islam-donemi',
+                    'Osmanlı': 'osmanli-donemi',
+                    'Modern': 'modern-donem'
+                };
+                return eraMap[eraName] || '';
+            }
+            
+            // Enhanced hover effects
+            const historicalEvents = document.querySelectorAll('.historical-event');
+            historicalEvents.forEach(event => {
+                event.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                });
+                
+                event.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Counter animation for statistics
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                const duration = 2000;
+                let current = 0;
+                const increment = target / (duration / 16);
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
